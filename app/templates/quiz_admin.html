@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}题库管理{% endblock %}
+
+{% block content %}
+  <h1>📚 题库管理</h1>
+    <!-- 搜索和筛选 -->
+    <form method="GET" action="/admin">
+        <input type="text" name="search" placeholder="🔍 搜索题目..." value="{{ keyword }}">
+        <select name="tag">
+        <option value="">📂 筛选标签</option>
+        {% for tag in all_tags %}
+            <option value="{{ tag }}" {% if tag == tag_filter %}selected{% endif %}>{{ tag }}</option>
+        {% endfor %}
+        </select>
+        <button type="submit">筛选</button>
+        <a href="/admin">🧹 清除</a>
+    </form>
+  <!-- 添加题目 -->
+  <form action="/admin/add" method="post" style="margin-top:20px;">
+    <input type="text" name="question" placeholder="题目内容" required>
+    <input type="text" name="answer" placeholder="正确答案" required>
+    <input type="text" name="tags" placeholder="标签（英文逗号分隔）">
+    <button type="submit">➕ 添加题目</button>
+  </form>
+
+  <hr>
+
+  <h2>当前题库</h2>
+   <!-- 题目表格 -->
+   <table>
+    <thead>
+      <tr>
+        <th>题目</th>
+        <th>答案</th>
+        <th>标签</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for q in questions %}
+      <tr>
+        <form action="/admin/update" method="post">
+          <td>
+            <input type="text" name="question" value="{{ q.question }}">
+          </td>
+          <td>
+            <input type="text" name="answer" value="{{ q.answer }}">
+          </td>
+          <td>
+            <input type="text" name="tags" value="{{ q.tags | join(', ') }}">
+          </td>
+          <td>
+            <input type="hidden" name="id" value="{{ q.id }}">
+            <button type="submit">💾 保存</button>
+        </form>
+        <form action="/admin/delete" method="post" style="display:inline;">
+          <input type="hidden" name="id" value="{{ q.id }}">
+          <button type="submit" onclick="return confirm('确定删除该题目？')">🗑 删除</button>
+        </form>
+          </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <!-- 分页 -->
+  <div class="pagination">
+    {% if page > 1 %}
+      <a href="/admin?page={{ page - 1 }}&search={{ keyword }}&tag={{ tag_filter }}">⬅ 上一页</a>
+    {% endif %}
+    第 {{ page }} / {{ pages }} 页
+    {% if page < pages %}
+      <a href="/admin?page={{ page + 1 }}&search={{ keyword }}&tag={{ tag_filter }}">下一页 ➡</a>
+    {% endif %}
+  </div>
+{% endblock %}

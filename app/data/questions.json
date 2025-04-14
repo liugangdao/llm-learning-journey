@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "question": "NumPy 中用于创建一维数组的函数是？",
+      "answer": "np.array",
+      "tags": ["numpy", "基础"]
+    },
+    {
+      "id": 2,
+      "question": "在 PyTorch 中，反向传播函数是？",
+      "answer": "backward()",
+      "tags": ["pytorch", "训练"]
+    },
+    {
+      "id": 3,
+      "question": "transformer 中的 self-attention 核心思想是什么？",
+      "answer": "每个位置关注输入序列中所有位置的信息",
+      "tags": ["transformer", "原理"]
+    },
+    {
+      "id": 4,
+      "question": "常见的激活函数 ReLU 的数学表达是？",
+      "answer": "f(x) = max(0, x)",
+      "tags": ["深度学习", "基础"]
+    },
+    {
+      "id": 5,
+      "question": "训练大模型时常用的数据并行技术叫什么？",
+      "answer": "Data Parallel",
+      "tags": ["训练", "优化"]
+    },
+    {
+      "id": 6,
+      "question": "LoRA 技术的核心思想是什么？",
+      "answer": "通过引入低秩矩阵减少参数更新量",
+      "tags": ["参数高效微调", "优化"]
+    },
+    {
+      "id": 7,
+      "question": "LLM 中常用的 tokenizer 是？",
+      "answer": "BPE（Byte Pair Encoding）",
+      "tags": ["tokenization", "应用"]
+    },
+    {
+      "id": 8,
+      "question": "transformer 中 position embedding 的作用是？",
+      "answer": "引入序列位置信息",
+      "tags": ["transformer", "原理"]
+    },
+    {
+      "id": 9,
+      "question": "微调大模型时常见的小批量优化器是？",
+      "answer": "AdamW",
+      "tags": ["训练", "优化"]
+    },
+    {
+      "id": 10,
+      "question": "在 LLM 推理中使用的缓存机制是什么？",
+      "answer": "KV Cache",
+      "tags": ["推理", "优化"]
+    }
+  ]
+  

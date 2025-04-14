@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}LLM 知识测验{% endblock %}
+
+{% block content %}
+  <h1>🧠 LLM 知识测验</h1>
+
+  <div class="card">
+    <h2>{{ question.question }}</h2>
+    
+    <form method="POST" action="/quiz">
+        <input type="text" name="answer" placeholder="请输入你的答案" >
+        <br><br>
+        <button type="submit">提交答案</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('quiz.quiz') }}">
+        <button type="submit">下一题</button>
+    </form>
+
+    <div class="stats">
+        <p>总答题数: {{ stats.total_count }}</p>
+        <p>正确答案数: {{ stats.correct_count }}</p>
+        <p>错误答案数: {{ stats.incorrect_count }}</p>
+    </div>
+    <!-- <form method="POST" action="/quiz">
+        <div class="question-text">题目：{{ question }}</div>
+        <input type="text" name="answer" placeholder="请输入你的答案" required>
+        <button type="submit">提交答案</button>
+      </form>
+  
+      {% if result is not none %}
+        <div class="feedback">
+          {% if result %}
+            ✅ 答对了！
+          {% else %}
+            ❌ 答错了，正确答案是：<strong>{{ correct_answer }}</strong>
+          {% endif %}
+        </div>
+        <form method="GET" action="/quiz">
+          <button class="next-btn">下一题</button>
+        </form>
+      {% endif %} -->
+</div>
+{% endblock %}
